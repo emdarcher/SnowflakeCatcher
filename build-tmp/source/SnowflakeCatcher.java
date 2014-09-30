@@ -1,8 +1,24 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class SnowflakeCatcher extends PApplet {
+
 SnowFlake[] flakes;
 int total_flakes_amount = 64;
-color drag_color = #348928;
+int drag_color = 0xff348928;
 
-void setup()
+public void setup()
 {
   //your code here
   size(300,300);
@@ -11,12 +27,12 @@ void setup()
   flakes = new SnowFlake [total_flakes_amount];
   init_flakes();
 }
-void draw()
+public void draw()
 {
   //your code here
   flakes_do_stuff();
 }
-void mouseDragged()
+public void mouseDragged()
 {
   //your code here
   fill(drag_color);
@@ -34,31 +50,31 @@ class SnowFlake
     y = (int)(Math.random()*height);
     isMoving = true;
   }
-  void show()
+  public void show()
   {
     //your code here
     fill(255);
     ellipse(x, y, 5, 5);
   }
-  void lookDown()
+  public void lookDown()
   {
     //your code here
     if((y>=0)&&(y<=height)){
-      isMoving = (get(x,y+1)!=#000000) ? false : true; 
+      isMoving = (get(x,y+1)!=0xff000000) ? false : true; 
     }
   }
-  void erase()
+  public void erase()
   {
     //your code here
     fill(0);
     ellipse(x, y, 7, 7);
   }
-  void move()
+  public void move()
   {
     //your code here
     if(isMoving==true){y++;}
   }
-  void wrap()
+  public void wrap()
   {
     //your code here
     if((y>=height)){
@@ -67,17 +83,26 @@ class SnowFlake
   }
 }
 
-void init_flakes(){
+public void init_flakes(){
   for(int i=0;i<flakes.length;i++){
     flakes[i] = new SnowFlake();
   }
 }
-void flakes_do_stuff(){
+public void flakes_do_stuff(){
   for(int i=0;i<flakes.length;i++){
     flakes[i].erase();
     flakes[i].lookDown();
     flakes[i].move();
     flakes[i].wrap();
     flakes[i].show();
+  }
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "SnowflakeCatcher" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
   }
 }
