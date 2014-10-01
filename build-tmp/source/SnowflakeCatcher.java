@@ -24,6 +24,7 @@ public void setup(){
   background(0);
   flakes = new SnowFlake [total_flakes_amount];
   init_flakes();
+  frameRate(30);
 }
 public void draw(){
   flakes_do_stuff();
