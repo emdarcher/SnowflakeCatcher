@@ -19,32 +19,33 @@ void mouseDragged(){
 }
 
 class SnowFlake {
-  int x,y;
+  int Sx,Sy,barr;
   boolean isMoving;
   SnowFlake(){
-    x = (int)(Math.random()*width);
-    y = (int)(Math.random()*height);
+    Sx = (int)(Math.random()*width);
+    Sy = (int)(Math.random()*height);
     isMoving = true;
+    barr = 6;
   }
   void show(){
     fill(255);
-    ellipse(x, y, 5, 5);
+    ellipse(Sx, Sy, 5, 5);
   }
   void lookDown(){
-    if((y>=0)&&(y<=height)){
-      isMoving = (get(x,y+6)!=#000000) ? false : true; 
+    if((Sy>=0)&&(Sy<=(height-barr))){
+      isMoving = (get(Sx,Sy+6)!=#000000) ? false : true; 
     }
   }
   void erase(){
     fill(0);
-    ellipse(x, y, 7, 7);
+    ellipse(Sx, Sy, 7, 7);
   }
   void move(){
-    if(isMoving==true){y++;}
+    if(isMoving==true){Sy++;}
   }
   void wrap(){
-    if((y>=height)){
-      y=0; x = (int)(Math.random()*width);
+    if((Sy>=(height-barr))){
+      Sy=0; Sx = (int)(Math.random()*width);
     }
   }
 }
