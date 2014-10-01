@@ -30,8 +30,13 @@ public void draw(){
   flakes_do_stuff();
 }
 public void mouseDragged(){
-  fill(drag_color);
-  ellipse(mouseX,mouseY,8,8); 
+  if(mouseButton == LEFT){
+  fill(drag_color); stroke(drag_color);
+  ellipse(mouseX,mouseY,8,8);
+  } else {
+    fill(0); stroke(0);
+    ellipse(mouseX,mouseY,8,8);
+  } 
 }
 
 class SnowFlake {
@@ -44,7 +49,7 @@ class SnowFlake {
     barr = 6;
   }
   public void show(){
-    fill(255);
+    fill(255); stroke(0);
     ellipse(Sx, Sy, 5, 5);
   }
   public void lookDown(){
@@ -53,7 +58,7 @@ class SnowFlake {
     }
   }
   public void erase(){
-    fill(0);
+    fill(0); stroke(0);
     ellipse(Sx, Sy, 7, 7);
   }
   public void move(){
