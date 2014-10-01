@@ -31,7 +31,7 @@ class SnowFlake {
   }
   void lookDown(){
     if((y>=0)&&(y<=height)){
-      isMoving = (get(x,y+1)!=#000000) ? false : true; 
+      isMoving = (get(x,y+6)!=#000000) ? false : true; 
     }
   }
   void erase(){

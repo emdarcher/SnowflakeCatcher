@@ -18,65 +18,46 @@ SnowFlake[] flakes;
 int total_flakes_amount = 64;
 int drag_color = 0xff348928;
 
-public void setup()
-{
-  //your code here
+public void setup(){
   size(300,300);
 
   background(0);
   flakes = new SnowFlake [total_flakes_amount];
   init_flakes();
 }
-public void draw()
-{
-  //your code here
+public void draw(){
   flakes_do_stuff();
 }
-public void mouseDragged()
-{
-  //your code here
+public void mouseDragged(){
   fill(drag_color);
   ellipse(mouseX,mouseY,8,8); 
 }
 
-class SnowFlake
-{
-  //class member variable declarations
+class SnowFlake {
   int x,y;
   boolean isMoving;
   SnowFlake(){
-    //class member variable initializations
     x = (int)(Math.random()*width);
     y = (int)(Math.random()*height);
     isMoving = true;
   }
-  public void show()
-  {
-    //your code here
+  public void show(){
     fill(255);
     ellipse(x, y, 5, 5);
   }
-  public void lookDown()
-  {
-    //your code here
+  public void lookDown(){
     if((y>=0)&&(y<=height)){
-      isMoving = (get(x,y+1)!=0xff000000) ? false : true; 
+      isMoving = (get(x,y+6)!=0xff000000) ? false : true; 
     }
   }
-  public void erase()
-  {
-    //your code here
+  public void erase(){
     fill(0);
     ellipse(x, y, 7, 7);
   }
-  public void move()
-  {
-    //your code here
+  public void move(){
     if(isMoving==true){y++;}
   }
-  public void wrap()
-  {
-    //your code here
+  public void wrap(){
     if((y>=height)){
       y=0; x = (int)(Math.random()*width);
     }
